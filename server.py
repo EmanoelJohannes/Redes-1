@@ -2,7 +2,7 @@ import socket
 
 import threading
 
-bind_ip = '192.168.15.19'
+bind_ip = 'localhost'
 
 bind_port = 80
 
@@ -10,7 +10,6 @@ bind_port = 80
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.bind((bind_ip, bind_port))
 
-# Ouve 5 conexões simultaneas
 server.listen(5)
 print ('[*] Escutando %s:%d \n' %(bind_ip, bind_port))
 

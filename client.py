@@ -1,14 +1,29 @@
-import socket 
+# import socket 
 
-target_host = '192.168.15.19'
-target_port = 80
+# target_host = 'localhost'
+# target_port = 80
 
-client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+# teste = 'Oi!'
 
-client.connect((target_host, target_port))
+# client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-client.send('Olá! Eu sou o cliente e estou me conectando ao servidor')
+# client.connect((target_host, target_port))
 
-response = client.recv(4096)
+# client.send(teste)
 
-print (response)
+# response = client.recv(4096)
+
+# print (response)
+
+# from tkinter import *
+
+# class Application:
+#   def __init__(self, master=None):
+#       self.widget1 = Frame(master)
+#       self.widget1.pack()
+#       self.msg = Label(self.widget1, text="Primeiro widget")
+#       self.msg.pack ()
+
+# root = Tk()
+# Application(root)
+# root.mainloop()
