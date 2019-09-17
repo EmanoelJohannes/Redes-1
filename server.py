@@ -1,29 +1,30 @@
+
 import socket
 
-import threading
+HOST = 'localhost'
 
-bind_ip = 'localhost'
+PORT = 80
 
-bind_port = 80
-
-# Socket AF_INET define ipv4 e SOCK_STREAM determina que estamos trabalhando com TCP
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-server.bind((bind_ip, bind_port))
 
-server.listen(5)
-print ('[*] Escutando %s:%d \n' %(bind_ip, bind_port))
+orig = (HOST, PORT)
 
-def handle_client(client_socket):
-    request =  client_socket.recv(1024)
-    print('[*] Recebido: %s' %request)
-    print('\n-----------------\n')
-    client_socket.send('Mensagem destinada ao cliente : %s \n' %addr[0])
-    client_socket.send('\n ACK! \nRecebido pelo servidor!\n')
-    client_socket.close()
+server.bind(orig)
+
+server.listen(1)
+
+print("Escutando %s:%d \n" %(HOST, PORT))
 
 while True:
-    client, addr = server.accept()
-    print('[*] Conexao aceita de: %s %d' %(addr[0], addr[1]))
-    client_handler = threading.Thread(target=handle_client, args=(client, ))
-    client_handler.start()
+    con, cliente = server.accept()
+    print('Conectado por ', cliente)
 
+    while True:
+        msg = con.recv(1024)
+        if not(msg): break
+        print("Mensagem enviada via cliente: ", msg)
+        con.sendall(msg)
+
+
+    print('Finalizando conexao do cliente', cliente)
+    con.close()

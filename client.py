@@ -1,16 +1,23 @@
-import socket 
+import socket
 
-target_host = 'localhost'
-target_port = 80
+class Client:
+    
+    def __init__(self):
+        HOST = 'localhost'
 
-teste = 'Oi!'
+        PORT = 80
 
-client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-client.connect((target_host, target_port))
+        dest = (HOST, PORT)
 
-client.send(teste)
+        self.client.connect(dest)
 
-response = client.recv(4096)
+    def enviarMensagem(self, msg):
+        self.client.sendall(msg.encode('utf-8'))
+        response = self.client.recv(4096)
+        return response
+            
 
-print (response)
+    def closeConnection():
+        client.close()
